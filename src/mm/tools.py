@@ -18,16 +18,19 @@ def getFiles(path):
     return pic_names
 
 
-def tree(path, deep=1):
+def tree(path, deep=1, trans=False):
     """ 打印目录树 """
+    path.replace('\\', '/')
     if deep == 1:
-        print(' - ' + path.split('/')[-1])
+        print('|--' + path.split('/')[-1])
     for item in os.listdir(path):
-        new_path = path + '/' + item
+        newPath = path + '/' + item
         # print(' |    ' * deep + ' - ' + item)
-        print('    ' * deep + ' - ' + item.replace('_', '\\_'))
-        if os.path.isdir(new_path):
-            tree(new_path, deep=deep + 1)
+        if trans:
+            item.replace('_', '\\_')
+        print('|  ' * deep + '|--' + item)
+        if os.path.isdir(newPath):
+            tree(newPath, deep=deep + 1)
 
 
 # def downloadFile(url, file_name=None, block_num=10):
