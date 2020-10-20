@@ -25,7 +25,6 @@ def tree(path, deep=1, trans=False):
         print('|--' + path.split('/')[-1])
     for item in os.listdir(path):
         newPath = path + '/' + item
-        # print(' |    ' * deep + ' - ' + item)
         if trans:
             item.replace('_', '\\_')
         print('|  ' * deep + '|--' + item)
